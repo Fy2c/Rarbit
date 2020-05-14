@@ -1,0 +1,61 @@
+.author{
+    color: #d2e8ec;
+}
+
+.cat-tag{
+    border-radius: 100px;
+    border: 1px solid #707070;
+    padding: 5px 15px;
+    font-size: 0.75rem;
+    margin-top: -5px;
+    margin-left: 25px;
+}
+
+ul, label {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+ul li {
+    display: inline-block;
+}
+
+.v-btn{
+    text-transform: none !important;
+    font-weight:700;
+}
+
+.link{
+    color: #fff;
+    font-weight:700;
+    font-size: 0.8rem !important;
+    text-transform: none !important;
+    background-color: transparent !important;
+    text-decoration: none !important;
+}
+
+.btn-attantion{
+    color: #fff !important;
+    border: 1px solid #5c33b3 !important;
+    background-color: #5c33b3 !important;
+    border-radius: 4px;
+    font-weight: normal;
+}
+
+.btn-tips{
+    color: #fff !important;
+    border: 1px solid #2cc4d2 !important;
+    background-color: #2cc4d2 !important;
+    border-radius: 4px;
+    font-weight: normal;
+}
+
+.btn-tile{
+    background-color: transparent !important;
+    border-radius: 4px;
+}
+
+.v-btn .v-icon{
+    font-size: 9px;
+    margin-right: 8px;
+}

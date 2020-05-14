@@ -1,0 +1,33 @@
+.v-btn.nav-active{
+    border-bottom: 2px solid #519eca !important;
+    color: #fff !important;
+  }
+
+  .v-btn.nav-active:before {
+  background-color: #252525 !important;
+}
+  
+.v-btn{
+  text-transform: none !important;
+  color: #707070 !important;
+  border-bottom: 2px solid transparent !important;
+}
+
+.user-text{
+  font-size: 0.75rem;
+  color:#a5a5a5;
+  font-weight: 600;
+}
+
+.user-image{
+  border-radius: 100px;
+}
+
+.v-icon{
+  font-size: 0.75rem !important;
+  color:#707070 !important;
+}
+
+.v-btn.nav-active[data-v-1d5bd9e2]:before {
+  background-color: transparent !important;
+}

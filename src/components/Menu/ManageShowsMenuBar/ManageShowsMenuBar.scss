@@ -1,0 +1,17 @@
+.v-btn{
+  text-transform: none !important;
+  font-size: 0.75rem !important;
+  background: #012b2c !important;
+  border-color: #012b2c !important;
+  border: none;
+  color: #707070; 
+}
+
+.theme--dark.v-btn-toggle:not(.v-btn-toggle--group) .v-btn.v-btn {
+  border: none !important;
+}
+
+.v-btn:before {
+  background-color: transparent !important;
+}
+
