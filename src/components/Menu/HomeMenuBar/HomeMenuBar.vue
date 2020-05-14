@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar style="background:#001e1f;margin-top: 64px !important;" dark flat dense fixed>
+    <v-app-bar class="sub-menu" color="#001e1f" dark flat dense fixed>
       <v-btn-toggle
           v-model="sorting"
           dense tile group mandatory
@@ -30,11 +30,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component
-export default class SubMenuBar extends Vue {
-
-  public sorting: any = 0; 
-  public filter: any = 0; 
+export default class HomeMenuBar extends Vue {
+  public sorting: any = 0;
+  public filter: any = 0;
 }
 </script>
 
-<style scoped lang="scss" src="./SubMenuBar.scss"></style>
+<style scoped lang="scss" src="./HomeMenuBar.scss"></style>

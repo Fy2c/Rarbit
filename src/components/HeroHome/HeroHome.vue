@@ -20,7 +20,7 @@
                             <v-btn tile class="btn-attantion">
                                 <v-icon small>$plus</v-icon>
                                 Add to list
-                                
+
                             </v-btn>
                         </li>
                         <li class="ml-6">
@@ -30,20 +30,19 @@
                         </li>
                     </ul>
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
 </template>
 
-
 <script lang="ts">
-    import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 
     @Component
-    export default class HomeHero extends Vue {
+export default class HomeHero extends Vue {
 
-    }
+}
 </script>
 
 <style scoped lang="scss" src="./HeroHome.scss"></style>

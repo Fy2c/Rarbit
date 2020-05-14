@@ -6,10 +6,10 @@
 
       <v-container fluid=true class="px-10">
         <v-row class="mt-3 mb-6 ml-1">
-          <span style="font-size:middle;color:#707070;">LISTING</span>
+          <span class="small-title">LISTING</span>
         </v-row>
         <v-row class="ml-n5">
-          <ShowCard 
+          <ShowCard
             v-for="item in shows"
             v-bind:key="item.Id"
             :show="item"></ShowCard>
@@ -27,22 +27,24 @@ import ManageShowsMenuBar from '@/components/Menu/ManageShowsMenuBar/ManageShows
 
 import ShowModel from '../models/ShowModel'
 
-@Component({components: {
+@Component({
+  components: {
     ManageShowsMenuBar,
     ShowCard
-  }})
+  }
+})
 export default class Home extends Vue {
-  shows:ShowModel[];
+  shows: ShowModel[];
 
-  constructor() {
-    super();
-      this.shows = [
-        new ShowModel('Anais Fleming', 'My Life is a Journey - Love and Piece', 
-                      'my_life_is_a_journey', '/assets/movies/movie-02.png'),
-        new ShowModel('Leandro Beasley', 'Soul Food - Eat with your healthy habits', 
-                      'soul_food', '/assets/movies/movie-03.png'),
+  constructor () {
+    super()
+    this.shows = [
+      new ShowModel('Anais Fleming', 'My Life is a Journey - Love and Piece',
+        'my_life_is_a_journey', '/assets/movies/movie-02.png'),
+      new ShowModel('Leandro Beasley', 'Soul Food - Eat with your healthy habits',
+        'soul_food', '/assets/movies/movie-03.png')
 
-      ]
+    ]
   }
 }
 </script>

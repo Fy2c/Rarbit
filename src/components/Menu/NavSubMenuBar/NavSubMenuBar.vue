@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-app-bar style="margin-top: 64px !important;" color="transparent" dark flat dense fixed>
-      
+    <v-app-bar class="sub-menu" color="transparent" dark flat dense fixed>
+
       <v-btn style="color: #fff;" v-on:click="back($event)">
         <v-icon small left style="color: #00d7ee;">$arrowAltCircleLeft</v-icon>
         Go back
@@ -22,8 +22,8 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class NavSubMenuBar extends Vue {
-  back($event: any){
-    this.$router.go(-1);
+  back ($event: any) {
+    this.$router.go(-1)
   }
 }
 </script>

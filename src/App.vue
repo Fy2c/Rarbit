@@ -7,18 +7,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue from 'vue'
 import NavigationBar from '@/components/Menu/NavigationBar/NavigationBar.vue'
-
 
 export default Vue.extend({
   name: 'App',
-  components: { 
-    NavigationBar 
+  components: {
+    NavigationBar
   }
 
-
-});
+})
 </script>
 
 <style>
@@ -38,6 +36,15 @@ export default Vue.extend({
 
   .v-ripple__container {
     display:none !important;
+  }
+
+  .sub-menu{
+    margin-top: 64px !important;
+  }
+
+  .small-title{
+    font-size:middle;
+    color:#707070;
   }
 
 </style>

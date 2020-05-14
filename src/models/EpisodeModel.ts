@@ -1,4 +1,4 @@
-import { Guid } from "guid-typescript";
+import { Guid } from 'guid-typescript'
 
 export default class EpisodeModel {
     readonly Id: Guid
@@ -9,16 +9,16 @@ export default class EpisodeModel {
     readonly Slug: string
     readonly Progress: number
     readonly ShowGuid: Guid
-    
-    constructor (author: string, title: string, episodeNumber: number, slug: string, 
-                 thumbnail: string, progress: number = 0, showGuid: Guid) {
-        this.Id = Guid.create();
-        this.Author = author;
-        this.Thumbnail = thumbnail;
-        this.Title = title;
-        this.Slug = slug;
-        this.Progress = progress;
-        this.ShowGuid = showGuid;
-        this.EpisodeNumber = episodeNumber;
+
+    constructor (author: string, title: string, episodeNumber: number, slug: string,
+      thumbnail: string, progress = 0, showGuid: Guid) {
+      this.Id = Guid.create()
+      this.Author = author
+      this.Thumbnail = thumbnail
+      this.Title = title
+      this.Slug = slug
+      this.Progress = progress
+      this.ShowGuid = showGuid
+      this.EpisodeNumber = episodeNumber
     }
 }

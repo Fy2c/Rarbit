@@ -1,5 +1,5 @@
 <template>
-    <v-card class="movie-poster-card mx-6 mt-5 mb-12" 
+    <v-card class="movie-poster-card mx-6 mt-5 mb-12"
             width="300px" color="#212121" style="background:none;"
             v-on:click="select($event)">
         <div style="position: relative;">
@@ -22,21 +22,19 @@ import ShowModel from '../../models/ShowModel'
 
 @Component
 export default class EpisodeCard extends Vue {
-
     @Prop({ type: ShowModel, required: true })
     show!: ShowModel
 
-    @Prop({ type: EpisodeModel, required: true })    
+    @Prop({ type: EpisodeModel, required: true })
     episode!: EpisodeModel;
 
-    constructor()
-    {
-        super();
+    constructor () {
+      super()
     }
 
-    select(event: any){
-        event.target.blur();
-        this.$router.push('/episode/' + this.show.Slug +'/' + this.episode.EpisodeNumber);
+    select (event: any) {
+      event.target.blur()
+      this.$router.push('/episode/' + this.show.Slug + '/' + this.episode.EpisodeNumber)
     }
 }
 </script>

@@ -22,18 +22,16 @@ import ShowModel from '../../models/ShowModel'
 
 @Component
 export default class ShowCard extends Vue {
-
     @Prop({ type: ShowModel, required: true })
     show!: ShowModel;
 
-    constructor()
-    {
-        super();
+    constructor () {
+      super()
     }
 
-    select(event: any){
-        event.target.blur();
-         this.$router.push('/show/' + this.show.Slug);
+    select (event: any) {
+      event.target.blur()
+      this.$router.push('/show/' + this.show.Slug)
     }
 }
 </script>

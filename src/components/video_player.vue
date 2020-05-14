@@ -1,28 +1,27 @@
 <script lang="ts">
-import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
+import { Component, Emit, Prop, Vue } from 'vue-property-decorator'
 
-import 'video.js/dist/video-js.css';
+import 'video.js/dist/video-js.css'
 
-import _videojs from 'video.js';
-const videojs = (window as any).videojs || _videojs;
-import 'videojs-flash'; 
+import _videojs from 'video.js'
+import 'videojs-flash'
+const videojs = (window as any).videojs || _videojs
 
 @Component({
-  name: 'video-player',
+  name: 'video-player'
 })
 export default class VideoPlayer extends Vue {
+  @Prop({ type: Object, default: () => {} }) private options!: object;
 
-  @Prop({ type: Object, default: () => {}}) private options!: object;
+  private mounted () {
+    this.player = videojs(this.$refs.videoPlayer, this.options, function onPlayerReady () {
 
-  private mounted() {
-    this.player = videojs(this.$refs.videoPlayer, this.options, function onPlayerReady() {
-
-    });
+    })
   }
 
-  private beforeDestroy() {
+  private beforeDestroy () {
     if (this.player) {
-      this.player.dispose();
+      this.player.dispose()
     }
   }
 

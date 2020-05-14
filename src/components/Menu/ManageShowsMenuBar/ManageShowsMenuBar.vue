@@ -1,13 +1,13 @@
 <template>
   <div>
-    <v-app-bar style="background:#001e1f !important;margin-top:64px !important;" dark flat dense fixed>
-      
+    <v-app-bar class="sub-menu" color="#001e1f" dark flat dense fixed>
+
       <v-btn style="color: #fff;" v-on:click="back($event)">
         <!-- <v-icon small left style="color: #00d7ee;">$arrowAltCircleLeft</v-icon> -->
         Create new show
       </v-btn>
 
-      <v-btn class="ml-3" style="color: #fff;" v-on:click="back($event)">
+      <v-btn class="ml-3" style="color: #fff;">
         Delete show
       </v-btn>
 
@@ -26,8 +26,8 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class ManageShowsMenuBar extends Vue {
-  back($event: any){
-    this.$router.push({ path: 'create-show' });
+  back ($event: any) {
+    this.$router.push({ path: 'edit-show' })
   }
 }
 </script>

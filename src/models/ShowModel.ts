@@ -1,4 +1,4 @@
-import { Guid } from "guid-typescript";
+import { Guid } from 'guid-typescript'
 
 export default class ShowModel {
     readonly Id: Guid
@@ -8,10 +8,10 @@ export default class ShowModel {
     readonly Slug: string
 
     constructor (author: string, title: string, slug: string, poster: string) {
-      this.Author = author;
-      this.Poster = poster;
-      this.Title = title;
-      this.Slug = slug;
-      this.Id = Guid.create();
+      this.Author = author
+      this.Poster = poster
+      this.Title = title
+      this.Slug = slug
+      this.Id = Guid.create()
     }
-  }
+}

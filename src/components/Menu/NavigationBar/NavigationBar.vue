@@ -1,6 +1,6 @@
 <template>
   <div style="position:fixed; width:100%;z-index:100">
-    <v-toolbar style="background:#001e1f !important;" dark flat class="px-1">
+    <v-toolbar color="#001e1f" dark flat>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -55,7 +55,6 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class NavigationBar extends Vue {
-
   public nav: Array<any> = [
     {
       route: '/',

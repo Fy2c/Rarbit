@@ -14,49 +14,50 @@
 </template>
 
 <script lang="ts">
-    import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 
-    import VideoPlayer from '@/components/video_player.vue';
-    import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue'
-    import ShowModel from '../models/ShowModel'
-    import EpisodeModel from '../models/EpisodeModel'
+import VideoPlayer from '@/components/video_player.vue'
+import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue'
+import ShowModel from '../models/ShowModel'
+import EpisodeModel from '../models/EpisodeModel'
 
-    @Component({components: {
+    @Component({
+      components: {
         NavSubMenuBar,
         VideoPlayer
-    }})
-    export default class EpisodeDetail extends Vue {
-
-        show:ShowModel;
+      }
+    })
+export default class EpisodeDetail extends Vue {
+        show: ShowModel;
         episode: EpisodeModel;
         videoOptions = {
-            techOrder: ['html5', 'flash'],
-            sourceOrder: true,
-            flash: {
-            hls: { withCredentials: false },
-            },
-            html5: { hls: { withCredentials: false } },
-            sources: [{
+          techOrder: ['html5', 'flash'],
+          sourceOrder: true,
+          flash: {
+            hls: { withCredentials: false }
+          },
+          html5: { hls: { withCredentials: false } },
+          sources: [{
             type: 'video/mp4',
-            src: 'https://vjs.zencdn.net/v/oceans.mp4',
-            }],
-            autoplay: false,
-            controls: true,
-            width: '700',
-            height: '394',
+            src: 'https://vjs.zencdn.net/v/oceans.mp4'
+          }],
+          autoplay: false,
+          controls: true,
+          width: '700',
+          height: '394'
         };
 
-        constructor() {
-            super();
-            this.show = new ShowModel('Anais Fleming', 'My Life is a Journey - Love and Piece', 
-                                      'my_life_is_a_journey', '/assets/movies/movie-02.png');
+        constructor () {
+          super()
+          this.show = new ShowModel('Anais Fleming', 'My Life is a Journey - Love and Piece',
+            'my_life_is_a_journey', '/assets/movies/movie-02.png')
 
-            this.episode = 
+          this.episode =
                 new EpisodeModel(this.show.Author, 'Space - A final frontier', 1, this.show.Slug,
-                                '/assets/episodes/episode-01.png', 20, this.show.Id);
-            window.scrollTo(0,0);
+                  '/assets/episodes/episode-01.png', 20, this.show.Id)
+          window.scrollTo(0, 0)
         }
-    }
+}
 </script>
 
 <style>
