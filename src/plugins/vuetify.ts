@@ -2,11 +2,14 @@ import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faChevronRight, faPlay, faShareSquare, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight, faPlay, faShareSquare, 
+         faPlus, faAngleDown, faArrowUp,
+         faPowerOff } from '@fortawesome/free-solid-svg-icons'
 import { faPlayCircle, faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
 
-library.add(faChevronRight, faPlay, faPlayCircle,
-  faArrowAltCircleLeft, faShareSquare, faPlus) // Include needed icons
+library.add(faChevronRight, faPlay, faPlayCircle, faAngleDown,
+  faArrowUp, faArrowAltCircleLeft, faShareSquare, faPlus,
+  faPowerOff) // Include needed icons
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(Vuetify)
@@ -15,7 +18,13 @@ const CUSTOM_ICONS = {
   signout: { // custom icon I want to use
     component: FontAwesomeIcon,
     props: {
-      icon: ['fas', 'chevron-right']
+      icon: ['fas', 'power-off']
+    }
+  },
+  arrowUp: {
+    component: FontAwesomeIcon,
+    props: {
+      icon: ['fas', 'arrow-up']
     }
   },
   play: {
@@ -46,6 +55,12 @@ const CUSTOM_ICONS = {
     component: FontAwesomeIcon,
     props: {
       icon: ['fas', 'plus']
+    }
+  },
+  down: {
+    component: FontAwesomeIcon,
+    props: {
+      icon: ['fas', 'angle-down']
     }
   }
 }

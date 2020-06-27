@@ -2,17 +2,13 @@
   <div>
     <HomeMenuBar class="d-lg-block d-xl-block d-md-block d-none"></HomeMenuBar>
     <div class="d-lg-block d-xl-block d-md-block d-none" style="margin-bottom: 100px;"></div>
-    <div style="margin-top: 60px;">
-      <v-container fluid=true class="px-10">
-        <v-row class="mt-3 mb-6 ml-1">
-          <span style="font-size:middle;color:#707070;">LISTING</span>
-        </v-row>
-        <v-row class="ml-n5">
+    <div style="margin-top: 60px;height: 1000px;">
+      <v-container fluid=true class="px-11">
+        <v-row class="mt-6 ml-n5">
           <ShowCard
             v-for="item in shows"
             v-bind:key="item.Id"
             :show="item"></ShowCard>
-
         </v-row>
       </v-container>
     </div>
@@ -21,22 +17,31 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import HomeMenuBar from '@/components/Menu/HomeMenuBar/HomeMenuBar.vue'
+import HeroHome from '@/components/HeroHome/HeroHome.vue'
 import ShowCard from '@/components/ShowCard/ShowCard.vue'
 import ShowModel from '../models/ShowModel'
 
 @Component({
   components: {
     HomeMenuBar,
-    ShowCard
+    ShowCard,
+    HeroHome
   }
 })
 export default class Home extends Vue {
   shows: ShowModel[];
 
+  @Watch('$route')
+  onRouteChanged(to: any, from: any) {
+    const newQuery = to.query;
+    const oldQuery = from.query;
+  }
+
   constructor () {
-    super()
+    super();
+    
     this.shows = [
       new ShowModel('Anais Fleming', 'My Life is a Journey - Love and Piece',
         'my_life_is_a_journey', '/assets/movies/movie-02.png'),

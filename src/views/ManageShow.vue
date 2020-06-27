@@ -5,10 +5,7 @@
     <div style="height:1000px;margin-top: 60px;">
 
       <v-container fluid=true class="px-10">
-        <v-row class="mt-3 mb-6 ml-1">
-          <span class="small-title">LISTING</span>
-        </v-row>
-        <v-row class="ml-n5">
+        <v-row class="ml-n5 mt-7">
           <ShowCard
             v-for="item in shows"
             v-bind:key="item.Id"

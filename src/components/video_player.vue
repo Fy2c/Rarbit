@@ -32,7 +32,7 @@ export default class VideoPlayer extends Vue {
 
 <template>
 <div class="module_video_player">
-  <video ref="videoPlayer" poster="/assets/thumbnail.png" class="video-js"></video>
+  <video ref="videoPlayer" style="width: 100%;" poster="/assets/thumbnail.png" class="video-js"></video>
 </div>
 </template>
 
@@ -53,7 +53,7 @@ export default class VideoPlayer extends Vue {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-::selection {
+/* ::selection {
     background-color: transparent !important;
-}
+} */
 </style>

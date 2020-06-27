@@ -3,15 +3,15 @@
     <v-app-bar class="sub-menu" color="transparent" dark flat dense fixed>
 
       <v-btn style="color: #fff;" v-on:click="back($event)">
-        <v-icon small left style="color: #00d7ee;">$arrowAltCircleLeft</v-icon>
-        Go back
+        <v-icon small left style="color: #58c4c7;">$arrowAltCircleLeft</v-icon>
+        Go Back
       </v-btn>
 
       <v-spacer />
 
       <v-btn style="color: #fff;">
-        Share this show
-        <v-icon small right style="color: #00d7ee;">$shareAlt</v-icon>
+        Share This Show
+        <v-icon small right style="color: #58c4c7;">$shareAlt</v-icon>
       </v-btn>
     </v-app-bar>
   </div>

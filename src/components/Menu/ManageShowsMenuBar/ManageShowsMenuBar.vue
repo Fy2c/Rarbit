@@ -1,20 +1,17 @@
 <template>
   <div>
     <v-app-bar class="sub-menu" color="#001e1f" dark flat dense fixed>
-
       <v-btn style="color: #fff;" v-on:click="back($event)">
         <!-- <v-icon small left style="color: #00d7ee;">$arrowAltCircleLeft</v-icon> -->
-        Create new show
+        Create New Show
       </v-btn>
 
-      <v-btn class="ml-3" style="color: #fff;">
-        Delete show
-      </v-btn>
+      <v-btn class="ml-3" style="color: #fff;">Delete Show</v-btn>
 
       <v-spacer />
 
       <v-btn style="color: #fff;">
-        Share this show
+        Share This Show
         <v-icon small right style="color: #00d7ee;">$shareAlt</v-icon>
       </v-btn>
     </v-app-bar>
@@ -22,12 +19,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class ManageShowsMenuBar extends Vue {
-  back ($event: any) {
-    this.$router.push({ path: 'edit-show' })
+  back($event: any) {
+    this.$router.push({ path: "edit-show" });
   }
 }
 </script>

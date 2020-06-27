@@ -1,5 +1,5 @@
 .v-btn.nav-active{
-    border-bottom: 2px solid #519eca !important;
+    // border-bottom: 2px solid #519eca !important;
     color: #fff !important;
   }
 
@@ -9,7 +9,8 @@
   
 .v-btn{
   text-transform: none !important;
-  color: #707070 !important;
+  color: #bbbbbb !important;
+  letter-spacing: 0 !important;
   border-bottom: 2px solid transparent !important;
 }
 
@@ -25,9 +26,18 @@
 
 .v-icon{
   font-size: 0.75rem !important;
-  color:#707070 !important;
+  color:#bbbbbb !important;
 }
 
 .v-btn.nav-active[data-v-1d5bd9e2]:before {
   background-color: transparent !important;
+}
+
+.v-btn.v-size--small{
+  font-size: 0.9rem;
+}
+
+.v-btn:not(.v-btn--round).v-size--small {
+  padding-left: 17px;
+  padding-right: 17px;
 }

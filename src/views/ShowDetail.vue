@@ -6,7 +6,7 @@
             <HeroHome></HeroHome>
             <v-container fluid=true class="px-10">
                 <v-row class="mt-3 ml-3">
-                    <span style="font-size:middle;color:#707070;">LISTING</span>
+                    <span class="small-title">LISTING</span>
                 </v-row>
                 <v-row class="mb-4 ml-3">
                     <span style="font-size:small;color:#a5a5a5;">{{episodesCount}} Episodes</span>
@@ -31,13 +31,13 @@ import EpisodeCard from '@/components/EpisodeCard/EpisodeCard.vue'
 import ShowModel from '../models/ShowModel'
 import EpisodeModel from '../models/EpisodeModel'
 
-    @Component({
-      components: {
-        NavSubMenuBar,
-        HeroHome,
-        EpisodeCard
-      }
-    })
+@Component({
+  components: {
+    NavSubMenuBar,
+    HeroHome,
+    EpisodeCard
+  }
+})
 export default class ShowDetail extends Vue {
         show: ShowModel;
         episodes: EpisodeModel[];

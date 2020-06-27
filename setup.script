@@ -1,0 +1,10 @@
+firebase login:ci
+firebase projects:list 
+firebase use rarbit-poc
+firebase deploy --only functions 
+firebase deploy --only "firestore:rules"
+firebase deploy --only "firestore:indexes"
+
+gcloud auth login
+gcloud config set project rarbit-poc
+gcloud functions call setCategories

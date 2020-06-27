@@ -5,8 +5,7 @@ import ManageShow from '../views/ManageShow.vue'
 import EditShow from '../views/EditShow.vue'
 import ShowDetail from '../views/ShowDetail.vue'
 import EpisodeDetail from '../views/EpisodeDetail.vue'
-// import Login from '../components/Auth/Login.vue'
-import Register from '../views/Auth/Register.vue'
+
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
@@ -35,16 +34,6 @@ const routes: Array<RouteConfig> = [
     name: 'Show episode',
     component: EpisodeDetail
   }
-
-  
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
 ]
 
 const router = new VueRouter({

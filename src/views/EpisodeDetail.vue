@@ -4,7 +4,7 @@
         <div class="d-lg-block d-xl-block d-md-block d-none" style="margin-bottom: 100px;"></div>
         <div style="margin-top:60px;">
             <div class="container pt-6">
-                <div>
+                <div class="col-md-7">
                     <video-player :options="videoOptions"></video-player>
                 </div>
             </div>
