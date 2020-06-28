@@ -9,8 +9,6 @@
 import Vue from "vue";
 import NavigationBar from "@/components/Menu/NavigationBar/NavigationBar.vue";
 import Component from "vue-class-component";
-import Catergory from '@/store/modules/catergory';
-import { getModule } from 'vuex-module-decorators';
 
 @Component({
   name: "App",

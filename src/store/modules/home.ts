@@ -60,7 +60,6 @@ class Home extends VuexModule {
   
   @Mutation
   updateShowList(list: any) {
-    console.log(list);
     this.showsList = list;
   }
   

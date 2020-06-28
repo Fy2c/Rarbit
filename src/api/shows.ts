@@ -15,13 +15,13 @@ class ShowApi{
               poster:'/assets/movies/movie-02.png'
             },
             { 
-              auth: 'Leandro Beasley', 
+              author: 'Leandro Beasley', 
               title: 'Soul Food - Eat with your healthy habits',
               slug: 'soul_food', 
               poster: '/assets/movies/movie-03.png'
             },
             {
-              auth: 'Adem Croft', 
+              author: 'Adem Croft', 
               title: 'Gem of California',
               slug: 'gem_of_california', 
               poster: '/assets/movies/movie-04.png'
@@ -29,30 +29,30 @@ class ShowApi{
           ]
     }
  
-    // async getShowList(categoryId: any = null, sorting: any = null, pagination: any = {}) {
-        // const limit = pagination.limit || 20;
-        // const page = (pagination.page || 0) * limit;
-        // const hasCategory = !!categoryId && typeof categoryId === 'number';
+    async getShowListV2(categoryId: any = null, sorting: any = null, pagination: any = {}) {
+        const limit = pagination.limit || 20;
+        const page = (pagination.page || 0) * limit;
+        const hasCategory = !!categoryId && typeof categoryId === 'number';
 
-        // const query = hasCategory
-        //       ? this._showCollection.where('categoryId', '==', categoryId)
-        //       : this._showCollection;
+        const query = hasCategory
+              ? this._showCollection.where('categoryId', '==', categoryId)
+              : this._showCollection;
 
-        // var showSnaps = await query.limit(limit)
-        //                            .orderBy(sorting || 'createdAt', 'desc')
-        //                            .startAfter(page)
-        //                            .get();
+        var showSnaps = await query.limit(limit)
+                                   .orderBy(sorting || 'createdAt', 'desc')
+                                   .startAfter(page)
+                                   .get();
 
-        // const userIds = showSnaps.docs.map((x: any) => x.userId);
-        // const userSnaps = await Database.collection('users').where('uid', 'in', userIds).get();
+        const userIds = [...new Set(showSnaps.docs.map((x: any) => x.userId))];
+        const userSnaps = await Database.collection('users').where('uid', 'in', userIds).get();
 
-        // return showSnaps.docs.map((show: any) =>
-        //             Object.assign(
-        //                     {}, 
-        //                     show, 
-        //                     userSnaps.docs.find((user:any) => user.uid == show.uid) || {}
-        //             ));
-    // }
+        return showSnaps.docs.map((show: any) =>
+                    Object.assign(
+                            {}, 
+                            show, 
+                            userSnaps.docs.find((user:any) => user.uid == show.uid) || {}
+                    ));
+    }
 } 
 
 export default new ShowApi();

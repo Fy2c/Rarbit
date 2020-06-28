@@ -25,7 +25,6 @@ export class Auth extends VuexModule implements IUserState {
 
   @Mutation
   setUser(user: IUserState): void {
-    console.log(user);
     user = user || {};
     this.uid = user.uid;
     this.name = user.name;
