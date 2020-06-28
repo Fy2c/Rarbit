@@ -25,12 +25,11 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import EpisodeModel from "../../models/EpisodeModel";
-import ShowModel from "../../models/ShowModel";
 
 @Component
 export default class EpisodeCard extends Vue {
-  @Prop({ type: ShowModel, required: true })
-  show!: ShowModel;
+  @Prop({ required: true })
+  show!: any;
 
   @Prop({ type: EpisodeModel, required: true })
   episode!: EpisodeModel;

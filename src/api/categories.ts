@@ -1,7 +1,9 @@
 import { Database } from '@/utils/database';
 
-export default {
+class CategoriesApi {
     getList() {
         return Database.collection('categories').get();
     }
 };
+
+export default new CategoriesApi();

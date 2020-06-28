@@ -1,6 +1,9 @@
 <template>
   <div>
-    <HomeMenuBar class="d-lg-block d-xl-block d-md-block d-none"></HomeMenuBar>
+    <HomeMenuBar 
+      class="d-lg-block d-xl-block d-md-block d-none"
+      @filter-updated="onFilterUpdated"
+    />
     <div class="d-lg-block d-xl-block d-md-block d-none" style="margin-bottom: 100px;"></div>
     <div style="margin-top: 60px;height: 1000px;">
       <v-container fluid=true class="px-11">
@@ -8,7 +11,7 @@
           <ShowCard
             v-for="item in shows"
             v-bind:key="item.Id"
-            :show="item"></ShowCard>
+            :show="item" />
         </v-row>
       </v-container>
     </div>
@@ -18,10 +21,14 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+import { HomeModule } from '@/store/modules/home';
+
+import ShowApi from '@/api/shows';
 import HomeMenuBar from '@/components/Menu/HomeMenuBar/HomeMenuBar.vue'
 import HeroHome from '@/components/HeroHome/HeroHome.vue'
 import ShowCard from '@/components/ShowCard/ShowCard.vue'
-import ShowModel from '../models/ShowModel'
+import debounce from 'lodash/debounce';
+
 
 @Component({
   components: {
@@ -31,27 +38,41 @@ import ShowModel from '../models/ShowModel'
   }
 })
 export default class Home extends Vue {
-  shows: ShowModel[];
+  get shows() {
+    return HomeModule.showsList;
+  };
 
-  @Watch('$route')
-  onRouteChanged(to: any, from: any) {
-    const newQuery = to.query;
-    const oldQuery = from.query;
+  private listQuery = {
+    page: 1,
+    limit: 20
   }
+
+  public created(){
+  }
+
+  public onFilterUpdated() {
+    this.getShowList();
+  }
+
+  private getShowList = debounce(HomeModule.getShowList, 500)
+
+    // private async getList() {
+    //   const data = await ShowApi.getShowList(this.listQuery);
+    //   console.log(data);
+    //   // this.list = data.items
+    //   // this.total = data.total
+    //   // Just to simulate the time of the request
+    //   // setTimeout(() => {
+    //   //   this.listLoading = false
+    //   // }, 0.5 * 1000);
+    // }
 
   constructor () {
     super();
     
-    this.shows = [
-      new ShowModel('Anais Fleming', 'My Life is a Journey - Love and Piece',
-        'my_life_is_a_journey', '/assets/movies/movie-02.png'),
-      new ShowModel('Leandro Beasley', 'Soul Food - Eat with your healthy habits',
-        'soul_food', '/assets/movies/movie-03.png'),
-      new ShowModel('Adem Croft', 'Gem of California',
-        'gem_of_california', '/assets/movies/movie-04.png')
-
-    ]
+    
   }
+
 }
 
 </script>

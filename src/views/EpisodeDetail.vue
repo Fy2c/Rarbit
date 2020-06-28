@@ -18,7 +18,6 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 
 import VideoPlayer from '@/components/video_player.vue'
 import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue'
-import ShowModel from '../models/ShowModel'
 import EpisodeModel from '../models/EpisodeModel'
 
     @Component({
@@ -28,7 +27,7 @@ import EpisodeModel from '../models/EpisodeModel'
       }
     })
 export default class EpisodeDetail extends Vue {
-        show: ShowModel;
+        show: any;
         episode: EpisodeModel;
         videoOptions = {
           techOrder: ['html5', 'flash'],
@@ -49,8 +48,12 @@ export default class EpisodeDetail extends Vue {
 
         constructor () {
           super()
-          this.show = new ShowModel('Anais Fleming', 'My Life is a Journey - Love and Piece',
-            'my_life_is_a_journey', '/assets/movies/movie-02.png')
+          this.show = {
+              author: 'Anais Fleming', 
+              title: 'My Life is a Journey - Love and Piece',
+              slug:'my_life_is_a_journey', 
+              poster:'/assets/movies/movie-02.png'
+            }
 
           this.episode =
                 new EpisodeModel(this.show.Author, 'Space - A final frontier', 1, this.show.Slug,

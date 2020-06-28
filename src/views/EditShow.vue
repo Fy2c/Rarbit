@@ -63,7 +63,6 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue'
 import UploadZone from '@/components/UploadZone.vue'
-import ShowModel from '../models/ShowModel'
 import VueDropzone from 'dropzone'
 
     @Component({

@@ -28,7 +28,6 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue'
 import HeroHome from '@/components/HeroHome/HeroHome.vue'
 import EpisodeCard from '@/components/EpisodeCard/EpisodeCard.vue'
-import ShowModel from '../models/ShowModel'
 import EpisodeModel from '../models/EpisodeModel'
 
 @Component({
@@ -39,7 +38,7 @@ import EpisodeModel from '../models/EpisodeModel'
   }
 })
 export default class ShowDetail extends Vue {
-        show: ShowModel;
+        show: any;
         episodes: EpisodeModel[];
 
         get episodesCount (): number {
@@ -48,8 +47,12 @@ export default class ShowDetail extends Vue {
 
         constructor () {
           super()
-          this.show = new ShowModel('Anais Fleming', 'My Life is a Journey - Love and Piece',
-            'my_life_is_a_journey', '/assets/movies/movie-02.png')
+          this.show = {
+              author: 'Anais Fleming', 
+              title: 'My Life is a Journey - Love and Piece',
+              slug:'my_life_is_a_journey', 
+              poster:'/assets/movies/movie-02.png'
+            }
 
           this.episodes = [
             new EpisodeModel(this.show.Author, 'Space - A final frontier', 1, this.show.Slug,

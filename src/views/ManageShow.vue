@@ -22,8 +22,6 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import ShowCard from '@/components/ShowCard/ShowCard.vue'
 import ManageShowsMenuBar from '@/components/Menu/ManageShowsMenuBar/ManageShowsMenuBar.vue'
 
-import ShowModel from '../models/ShowModel'
-
 @Component({
   components: {
     ManageShowsMenuBar,
@@ -31,16 +29,23 @@ import ShowModel from '../models/ShowModel'
   }
 })
 export default class Home extends Vue {
-  shows: ShowModel[];
+  shows: any = [];
 
   constructor () {
     super()
     this.shows = [
-      new ShowModel('Anais Fleming', 'My Life is a Journey - Love and Piece',
-        'my_life_is_a_journey', '/assets/movies/movie-02.png'),
-      new ShowModel('Leandro Beasley', 'Soul Food - Eat with your healthy habits',
-        'soul_food', '/assets/movies/movie-03.png')
-
+      {
+        author: 'Anais Fleming', 
+        title: 'My Life is a Journey - Love and Piece',
+        slug:'my_life_is_a_journey', 
+        poster:'/assets/movies/movie-02.png'
+      },
+      { 
+        auth: 'Leandro Beasley', 
+        title: 'Soul Food - Eat with your healthy habits',
+        slug: 'soul_food', 
+        poster: '/assets/movies/movie-03.png'
+      },
     ]
   }
 }

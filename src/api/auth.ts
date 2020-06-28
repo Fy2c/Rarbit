@@ -1,12 +1,14 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 
-export default {
-  signInByFacebook() {
+class AuthApi {
+  public signInByFacebook(): Promise<firebase.auth.UserCredential> {
     const provider = new firebase.auth.FacebookAuthProvider();
     return firebase.auth().signInWithPopup(provider);
-  },
+  }
 
-  logOut() {
+  public logOut(): Promise<void> {
     return firebase.auth().signOut();
   }
-};
+}
+
+export default new AuthApi();

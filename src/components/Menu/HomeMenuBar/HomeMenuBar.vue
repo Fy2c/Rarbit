@@ -19,7 +19,7 @@
           </v-select>
       </div>
       <v-btn-toggle
-          v-model="filter"
+          v-model="selectedCatergory"
           class="ml-8"
           dense tile group mandatory
         >
@@ -32,9 +32,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue, Watch, Emit } from 'vue-property-decorator';
 import { HomeModule } from '@/store/modules/home';
-import Catergory from '../../../store/modules/catergory';
 import { getModule } from 'vuex-module-decorators';
 
 @Component
@@ -43,66 +42,79 @@ export default class HomeMenuBar extends Vue {
   private catergoryStore: any;
 
   public created(){
-    this.catergoryStore = getModule(Catergory, this.$store);
     const query = { ...this.$route.query };
 
-    if(!!query.categoryFilter){
-      const cat = this.catergories.find((x: any) => x.name == query.categoryFilter);
-      this.filter = cat.id
-    }
-
-    if(!!query.mainFilter){
-      const sort = this.sortingList.find((x: any) => x.name == query.mainFilter);
-      this.selectedSort = sort.id;
-    }
+    this.restoreStoreFromQuery(query);
+    this.restoreQueryStringFromStore(query);
+    this.filterUpdated();
   }
   
   get catergories() {
-    const store = this.catergoryStore;
-    if(store.cacheMiss){
-      store.getCatergories();
-    }
-
-    return store.catergories;
+    return HomeModule.catergories;
   }
   
-  get filter(){
+  get selectedCatergory() {
     return HomeModule.selectedCategory;
   }
 
-  set filter(id) {
+  set selectedCatergory(id) {
     HomeModule.selectCategory(id);
+    this.filterUpdated();
   }
 
   get sortingList () {
     return HomeModule.sorting;
   }
 
-  get selectedSort() {
+  get selectedSort(): any {
     return HomeModule.selectedSorting;
   }
   
-  set selectedSort(id){
+  set selectedSort(id) {
     HomeModule.selectSorting(id);
+    this.filterUpdated();
   }
 
   @Watch('selectedSort')
-  onSelectedSortChanged(val: string, oldVal: string) {
+  onSelectedSortChanged(val: any, oldVal: any) {
     const selected = this.sortingList.find((x: any) => x.id == val);
     const query = { ...this.$route.query };
-    query.mainFilter = selected.name;
+    query.s = selected.slug;
 
     this.$router.push({ name: 'Home', query }).catch(() => {});
   }
 
-  @Watch('filter')
-  onSelectedFilterChanged(val: string, oldVal: string) {
+  @Watch('selectedCatergory')
+  onSelectedCatergoryrChanged(val: any, oldVal: any) {
     const selected = this.catergories.find((x: any) => x.id == val);
     const query = { ...this.$route.query };
-    query.categoryFilter = selected.name;
+    query.c = selected.slug;
 
     this.$router.push({ name: 'Home', query }).catch(() => {});
   }
+
+  private restoreQueryStringFromStore(query: { [x: string]: string|(string|null)[]; }) {
+    if(!query.c||!query.s) {
+      this.onSelectedCatergoryrChanged(this.selectedCatergory,this.selectedCatergory);
+      this.onSelectedSortChanged(this.selectedSort,this.selectedSort);
+    }
+  }
+
+  private restoreStoreFromQuery(query: { [x: string]: string|(string|null)[]; }) {
+    if(!!query.c) {
+      const cat=this.catergories.find((x: any) => x.slug==query.c);
+      this.selectedCatergory=cat.id;
+    }
+    
+    if(!!query.s) {
+      const sort=this.sortingList.find((x: any) => x.slug==query.s);
+      this.selectedSort=sort.id;
+    }
+  }
+
+  @Emit()
+  private filterUpdated(){}
+
 }
 </script>
 

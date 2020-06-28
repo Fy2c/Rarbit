@@ -1,4 +1,5 @@
 import { Module, VuexModule, Mutation, Action, getModule } from "vuex-module-decorators";
+import ShowApi from '@/api/shows';
 import store from "@/store";
 
 @Module({
@@ -11,15 +12,27 @@ import store from "@/store";
 class Home extends VuexModule {
 
   //#region catrgory
-  public selectedCategory: string = "-1";
+  public catergories: any = [
+    { id: 0, name: "Everything", slug: "everything" },
+    { id: 1, name: "Documentary", slug: "documentary" },
+    { id: 2, name: "Comedy", slug: "comedy" },
+    { id: 3, name: "News", slug: "news" },
+    { id: 4, name: "Music", slug: "music" },
+    { id: 5, name: "Drama", slug: "drama" },
+    { id: 6, name: "Cooking", slug: "cooking" },
+    { id: 7, name: "History", slug: "history" }
+
+  ]
+
+  public selectedCategory: number = 0;
 
   @Mutation
-  updateSelectedCategory(id: string) {
+  updateSelectedCategory(id: number) {
     this.selectedCategory = id;
   }
 
   @Action
-  selectCategory(id: string) {
+  selectCategory(id: number) {
     this.updateSelectedCategory(id);
   }
   //#endregion
@@ -28,8 +41,8 @@ class Home extends VuexModule {
   public selectedSorting: number = 0;
 
   public sorting: any = [
-    { name: "Popular", id: 0 },
-    { name: "Recently", id: 1 }
+    { id: 0, name: "Popular", slug: "popular" },
+    { id: 1, name: "Recently", slug: "recently" }
   ];
 
   @Mutation
@@ -42,6 +55,26 @@ class Home extends VuexModule {
   }
   //#endregion
 
+  //#region shows
+  public showsList = [];
+  
+  @Mutation
+  updateShowList(list: any) {
+    console.log(list);
+    this.showsList = list;
+  }
+  
+  @Action
+  getShowList() {
+    let list = ShowApi.getShowList(
+      this.selectCategory, 
+      this.selectSorting,
+      { limit: 20, page: 0 }
+    );
+      
+    this.updateShowList(list);
+  }
+  //#endregion
 }
 
 export const HomeModule = getModule(Home);
