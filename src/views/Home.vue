@@ -34,10 +34,6 @@ import debounce from 'lodash/debounce';
   }
 })
 export default class Home extends Vue {
-  set page(value: number){
-    HomeModule.setPage(value);
-  }
-
   get page(){
     return HomeModule.page;
   }

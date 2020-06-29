@@ -44,6 +44,7 @@ export default class UploadZone extends Vue {
     get dropzoneSettings(): DropzoneOptions{
         let _this = this;
         let defaultValues: any = {
+            url: 'http://dummy.url',
             autoProcessQueue: false,
             resizeQuality: 1,
             resizeWidth: 343,

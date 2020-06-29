@@ -65,10 +65,10 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import { UploadModule } from '@/store/modules/upload';
 import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue';
 import UploadZone from '@/components/UploadZone.vue';
 import CategoryApi from '@/api/category';
-
 
 @Component({
     components: {
@@ -79,31 +79,30 @@ import CategoryApi from '@/api/category';
 
 export default class EpisodeDetail extends Vue {
     public dropdownProp: any = { 'content-class' : 'sort-dropdown-menu' };
-    public formData: any = {
-        title: '',
-        description:'',
-        category: null,
-        file: null
-    };
 
+    get formData() {
+        return UploadModule.formData;
+    }
+    
     public dropzoneOptions: any = { 
-        url: 'http://dummy.url',
         acceptedFiles: 'image/jpg, image/jpeg, image/png',
     };
 
     public categoryList: any = [];
 
     async created() {
+        UploadModule.clearFormData();
         let category = await CategoryApi.getCategory();
         this.categoryList = [...category.filter(x => x.slug != 'everything')];
     }
 
     public onAddedFile(file: any) {
-        this.formData.file = file;
+        UploadModule.addFileToFormData(file);
     }
 
     public onSubmitForm(){
         const formData = {...this.formData};
+        console.log(formData);
     }
 }
 </script>
