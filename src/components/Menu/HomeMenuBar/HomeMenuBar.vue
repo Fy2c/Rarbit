@@ -34,23 +34,23 @@
 <script lang="ts">
 import { Component, Vue, Watch, Emit } from 'vue-property-decorator';
 import { HomeModule } from '@/store/modules/home';
-import { getModule } from 'vuex-module-decorators';
+import CategoryApi from '@/api/category';
 
 @Component
 export default class HomeMenuBar extends Vue {
   public dropdownProp = { 'content-class' : 'sort-dropdown-menu' };
-  private catergoryStore: any;
+  public catergories: any = [];
+  public sortingList: any = [];
+  
+  public async created(){
+    this.catergories = await CategoryApi.getCategory();
+    this.sortingList = await CategoryApi.getSorting();
 
-  public created(){
     const query = { ...this.$route.query };
 
     this.restoreStoreFromQuery(query);
     this.restoreQueryStringFromStore(query);
     this.filterUpdated();
-  }
-  
-  get catergories() {
-    return HomeModule.catergories;
   }
   
   get selectedCatergory() {
@@ -60,10 +60,6 @@ export default class HomeMenuBar extends Vue {
   set selectedCatergory(id) {
     HomeModule.selectCategory(id);
     this.filterUpdated();
-  }
-
-  get sortingList () {
-    return HomeModule.sorting;
   }
 
   get selectedSort(): any {

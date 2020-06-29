@@ -10,10 +10,6 @@ import store from "@/store";
 
 class Upload extends VuexModule { 
     public fromData: any = {};
-
-    @Mutation
-    setImage(id: string) {
-    }
 }
 
 export const UploadModule = getModule(Upload);

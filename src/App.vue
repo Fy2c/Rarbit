@@ -58,12 +58,13 @@ export default class extends Vue {
 }
 
 .sort-dropdown-menu .v-list {
+
   border: solid 1px rgb(27, 69, 70);
+  border-top:none;
   background: #001e1f !important;
   color: #ffffff;
-  margin-top: 9px;
 }
-
+  
 .sort-dropdown-menu .v-list .v-list-item--active {
   color: #58c4c7;
 }

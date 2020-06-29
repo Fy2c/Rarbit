@@ -23,9 +23,7 @@
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { HomeModule } from '@/store/modules/home';
 
-import ShowApi from '@/api/shows';
 import HomeMenuBar from '@/components/Menu/HomeMenuBar/HomeMenuBar.vue'
-import HeroHome from '@/components/HeroHome/HeroHome.vue'
 import ShowCard from '@/components/ShowCard/ShowCard.vue'
 import debounce from 'lodash/debounce';
 
@@ -33,8 +31,7 @@ import debounce from 'lodash/debounce';
 @Component({
   components: {
     HomeMenuBar,
-    ShowCard,
-    HeroHome
+    ShowCard
   }
 })
 export default class Home extends Vue {
@@ -42,11 +39,7 @@ export default class Home extends Vue {
     return HomeModule.showsList;
   };
 
-  private getShowList = debounce(HomeModule.getShowList, 500)
-
-  constructor () {
-    super();   
-  }
+  private getShowList = debounce(HomeModule.getShowList, 500);
 
 }
 

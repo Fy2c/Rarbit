@@ -1,12 +1,8 @@
 import { Database } from '@/utils/database';
-import { firestore } from 'firebase/app'
 
 class ShowApi{
-    private get _showCollection() : firestore.Query<firestore.DocumentData> {
-        return Database.collection('shows');
-    }
 
-    getShowList(categoryId: any = null, sorting: any = null, pagination: any = {}){
+  getShowList(categoryId: any = null, sorting: any = null, pagination: any = {}){
         return [
             {
               author: 'Anais Fleming', 
@@ -29,30 +25,34 @@ class ShowApi{
           ]
     }
  
-    async getShowListV2(categoryId: any = null, sorting: any = null, pagination: any = {}) {
-        const limit = pagination.limit || 20;
-        const page = (pagination.page || 0) * limit;
-        const hasCategory = !!categoryId && typeof categoryId === 'number';
+  async getShowListV2(categoryId: any = null, sorting: any = null, pagination: any = {}) {
+    const limit = pagination.limit || 20;
+    const page = (pagination.page || 0) * limit;
+    const showCollection = Database.collection('shows');
 
-        const query = hasCategory
-              ? this._showCollection.where('categoryId', '==', categoryId)
-              : this._showCollection;
+    const query = categoryId == 0 //show Evertything
+                ? showCollection
+                : showCollection.where('categoryId', '==', categoryId);
+        
+    let showSnaps = await query.limit(limit).orderBy('createdAt', 'desc')
+                               .startAfter(page).get();
 
-        var showSnaps = await query.limit(limit)
-                                   .orderBy(sorting || 'createdAt', 'desc')
-                                   .startAfter(page)
-                                   .get();
+    const userIds = [...new Set(showSnaps.docs.map((x: any) => x.userId))];
+    const userSnaps = userIds.length == 0
+                    ? { docs: [] }
+                    : await Database.collection('users').where('uid', 'in', userIds).get();
 
-        const userIds = [...new Set(showSnaps.docs.map((x: any) => x.userId))];
-        const userSnaps = await Database.collection('users').where('uid', 'in', userIds).get();
+    return showSnaps.docs.map((show: any) =>
+      {
+        let user: any = userSnaps.docs.find((user:any) => user.uid == show.uid) || {};
 
-        return showSnaps.docs.map((show: any) =>
-                    Object.assign(
-                            {}, 
-                            show, 
-                            userSnaps.docs.find((user:any) => user.uid == show.uid) || {}
-                    ));
-    }
+        return {
+          title: show.title,
+          poster: show.poster,
+          author: user.displayName
+        };
+      });
+  }
 } 
 
 export default new ShowApi();

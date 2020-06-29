@@ -6,7 +6,9 @@
             <div class="container pt-10">
                 <div class="row" style="justify-content: center!important;">
                     <div class="col-lg-4 col-md-5" style="padding-left:60px;padding-right:60px;">
-                        <UploadZone :options="dropzoneOptions"></UploadZone>
+                        <UploadZone 
+                            :options="dropzoneOptions"
+                        />
                     </div>
                     <div class="col-lg-6 col-md-7 pl-10">
                         <form class="edit-form">
@@ -18,10 +20,10 @@
                                     solo flat dense
                                     item-color="#1b4546"
                                     background-color="#1b4546"
-                                    v-model="defaultSelected" 
+                                    v-model="data.category" 
                                     :append-icon='mdi-plus'
-                                    :items="dropdown_font" 
-                                    item-value="id" 
+                                    :items="categoryList" 
+                                    item-value="slug" 
                                     item-text="name" 
                                     label="Select a Category"
                                     :menu-props="dropdownProp">
@@ -60,40 +62,39 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
-import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue'
-import UploadZone from '@/components/UploadZone.vue'
-import VueDropzone from 'dropzone'
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue';
+import UploadZone from '@/components/UploadZone.vue';
+import CategoryApi from '@/api/category';
 
-    @Component({
-      components: {
+
+@Component({
+    components: {
         NavSubMenuBar,
         UploadZone
-      }
-    })
-
-    export default class EpisodeDetail extends Vue {
-        public data: any = {
-            title: ''
-        };
-
-        public dropzoneOptions = {
-          url: 'https://httpbin.org/post'
-        }
-
-        public dropdownProp: any = { 'content-class' : 'sort-dropdown-menu' };
-
-        public dropdown_font: any = [
-            {name: 'News', id: 'News'}, 
-            {name: 'Comedy', id: 'Comedy'},
-            {name: 'Music', id: 'Music'},
-            {name: 'General', id: 'General'},
-            {name: 'Drama', id: 'Drama'},
-            {name: 'Cooking', id: 'Cooking'}
-        ];
-
-        public defaultSelected: any;
     }
+})
+
+export default class EpisodeDetail extends Vue {
+    public dropdownProp: any = { 'content-class' : 'sort-dropdown-menu' };
+    public data: any = {
+        title: '',
+        description:'',
+        category: null
+    };
+
+    public dropzoneOptions: any = { 
+        url: 'http://dummy.url',
+        acceptedFiles: 'image/jpg, image/jpeg',
+    };
+
+    public categoryList: any = [];
+
+    async created() {
+        let category = await CategoryApi.getCategory();
+        this.categoryList = [...category.filter(x => x.slug != 'everything')];
+    }
+}
 </script>
 
 <style scoped>
