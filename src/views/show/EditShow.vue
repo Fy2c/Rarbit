@@ -21,7 +21,7 @@
                                     solo flat dense
                                     item-color="#1b4546"
                                     background-color="#1b4546"
-                                    v-model="data.category" 
+                                    v-model="formData.category" 
                                     :append-icon='mdi-plus'
                                     :items="categoryList" 
                                     item-value="slug" 
@@ -33,14 +33,14 @@
                             </div>
                             <v-text-field 
                                 class="mt-5"
-                                v-model="data.title"
+                                v-model="formData.title"
                                 label="Show Title"
                                 placeholder="My awesome show name"
                                 counter=50
                             />
                             <v-textarea 
                                 class="mt-4"
-                                v-model="data.description"
+                                v-model="formData.description"
                                 label="Description"
                                 placeholder="Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis."
                                 no-resize
@@ -51,7 +51,8 @@
                             <v-btn 
                                 tile 
                                 class="mt-8 btn-attantion" 
-                                style="color:#fff;float:right;">
+                                style="color:#fff;float:right;"
+                                @click="onSubmitForm">
                                 Create
                             </v-btn>
                         </form>
@@ -78,10 +79,11 @@ import CategoryApi from '@/api/category';
 
 export default class EpisodeDetail extends Vue {
     public dropdownProp: any = { 'content-class' : 'sort-dropdown-menu' };
-    public data: any = {
+    public formData: any = {
         title: '',
         description:'',
-        category: null
+        category: null,
+        file: null
     };
 
     public dropzoneOptions: any = { 
@@ -97,7 +99,11 @@ export default class EpisodeDetail extends Vue {
     }
 
     public onAddedFile(file: any) {
-        console.log(file);
+        this.formData.file = file;
+    }
+
+    public onSubmitForm(){
+        const formData = {...this.formData};
     }
 }
 </script>

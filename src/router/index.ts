@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
-import ManageShow from '../views/ManageShow.vue'
-import EditShow from '../views/EditShow.vue'
-import ShowDetail from '../views/ShowDetail.vue'
-import EpisodeDetail from '../views/EpisodeDetail.vue'
+import Home from '@/views/Home.vue'
+import ManageShow from '@/views/show/ManageShow.vue'
+import EditShow from '../views/show/EditShow.vue'
+import ShowDetail from '../views/show/ShowDetail.vue'
+import EpisodeDetail from '../views/episode/EpisodeDetail.vue'
 
 Vue.use(VueRouter)
 

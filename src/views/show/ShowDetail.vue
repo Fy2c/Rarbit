@@ -28,7 +28,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue'
 import HeroHome from '@/components/HeroHome/HeroHome.vue'
 import EpisodeCard from '@/components/EpisodeCard/EpisodeCard.vue'
-import EpisodeModel from '../models/EpisodeModel'
+import EpisodeModel from '@/models/EpisodeModel'
 
 @Component({
   components: {

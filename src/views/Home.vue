@@ -27,7 +27,6 @@ import HomeMenuBar from '@/components/Menu/HomeMenuBar/HomeMenuBar.vue'
 import ShowCard from '@/components/ShowCard/ShowCard.vue'
 import debounce from 'lodash/debounce';
 
-
 @Component({
   components: {
     HomeMenuBar,
@@ -35,11 +34,20 @@ import debounce from 'lodash/debounce';
   }
 })
 export default class Home extends Vue {
+  set page(value: number){
+    HomeModule.setPage(value);
+  }
+
+  get page(){
+    return HomeModule.page;
+  }
+
   get shows() {
     return HomeModule.showsList;
   };
 
-  private getShowList = debounce(HomeModule.getShowList, 500);
+  private getShowList = debounce(async () => 
+    await HomeModule.getShowList(), 500);
 
 }
 

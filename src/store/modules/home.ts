@@ -48,13 +48,27 @@ class Home extends VuexModule {
     }
   
     @Action
-    getShowList() {
+    async getShowList() {
         const category = this.selectedCategory;
         const sorting = this.selectedSorting;
         const pagenation = { limit: 20, page: 0 };
 
-        let list = ShowApi.getShowList(category, sorting, pagenation);
+        let list = await ShowApi.getShowList(category, sorting, pagenation);
         this.updateShowList(list);
+    }
+    //#endregion
+
+    //#region page
+    public page: number = 1;
+
+    @Mutation
+    updatePage(page: number) {
+        this.page = page;
+    }
+
+    @Action
+    setPage(page: number){
+        this.updatePage(page);
     }
     //#endregion
 }

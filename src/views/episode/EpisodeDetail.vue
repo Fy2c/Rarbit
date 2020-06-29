@@ -18,7 +18,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 
 import VideoPlayer from '@/components/video_player.vue'
 import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue'
-import EpisodeModel from '../models/EpisodeModel'
+import EpisodeModel from '@/models/EpisodeModel'
 
     @Component({
       components: {
