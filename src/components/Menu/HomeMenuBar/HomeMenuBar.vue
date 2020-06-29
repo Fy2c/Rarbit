@@ -48,8 +48,8 @@ export default class HomeMenuBar extends Vue {
 
     const query = { ...this.$route.query };
 
-    this.restoreStoreFromQuery(query);
-    this.restoreQueryStringFromStore(query);
+    this.restoreStateFromQueryString(query);
+    this.restoreQueryStringFromState(query);
     this.filterUpdated();
   }
   
@@ -89,14 +89,14 @@ export default class HomeMenuBar extends Vue {
     this.$router.push({ name: 'Home', query }).catch(() => {});
   }
 
-  private restoreQueryStringFromStore(query: { [x: string]: string|(string|null)[]; }) {
+  private restoreQueryStringFromState(query: { [x: string]: string|(string|null)[]; }) {
     if(!query.c||!query.s) {
       this.onSelectedCatergoryrChanged(this.selectedCatergory,this.selectedCatergory);
       this.onSelectedSortChanged(this.selectedSort,this.selectedSort);
     }
   }
 
-  private restoreStoreFromQuery(query: { [x: string]: string|(string|null)[]; }) {
+  private restoreStateFromQueryString(query: { [x: string]: string|(string|null)[]; }) {
     if(!!query.c) {
       const cat=this.catergories.find((x: any) => x.slug==query.c);
       this.selectedCatergory=cat.id;

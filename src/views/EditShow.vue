@@ -8,6 +8,7 @@
                     <div class="col-lg-4 col-md-5" style="padding-left:60px;padding-right:60px;">
                         <UploadZone 
                             :options="dropzoneOptions"
+                            @on-added-file="onAddedFile"
                         />
                     </div>
                     <div class="col-lg-6 col-md-7 pl-10">
@@ -85,7 +86,7 @@ export default class EpisodeDetail extends Vue {
 
     public dropzoneOptions: any = { 
         url: 'http://dummy.url',
-        acceptedFiles: 'image/jpg, image/jpeg',
+        acceptedFiles: 'image/jpg, image/jpeg, image/png',
     };
 
     public categoryList: any = [];
@@ -93,6 +94,10 @@ export default class EpisodeDetail extends Vue {
     async created() {
         let category = await CategoryApi.getCategory();
         this.categoryList = [...category.filter(x => x.slug != 'everything')];
+    }
+
+    public onAddedFile(file: any) {
+        console.log(file);
     }
 }
 </script>

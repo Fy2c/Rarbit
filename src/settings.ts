@@ -17,7 +17,7 @@ const Cloudinary = {
 };
 
 const Rarbit = {
-    showPerPage: 15
+    showPerPage: 20
 };
 
 export default { Firebase, Cloudinary, Rarbit };

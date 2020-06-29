@@ -15,6 +15,11 @@ const routes: Array<RouteConfig> = [
     component: Home
   },
   {
+    path: '/my-list',
+    name: 'My list',
+    component: Home
+  },
+  {
     path: '/manage-shows',
     name: 'Manage shows',
     component: ManageShow

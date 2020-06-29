@@ -18,8 +18,9 @@
 
 <script lang="ts">
 import Dropzone from 'dropzone'
-import { DropzoneOptions } from 'dropzone'
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { DropzoneOptions } from 'dropzone';
+import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
+import Cloudinary from '@/utils/cloudinary';
 
 Dropzone.autoDiscover = false;
 
@@ -28,6 +29,14 @@ export default class UploadZone extends Vue {
 
     @Prop({type: Object, required: false})
     public options: any;
+
+    @Prop({type: Function, required: false})
+    public vaildateFunc: any; 
+
+    private get _validateFunc() {
+        let defaultFn = (file: any) => true;
+        return this.vaildateFunc || defaultFn;
+    }
 
     private hasBeenMounted: Boolean = false;
     public dropzone!: Dropzone;
@@ -62,6 +71,14 @@ export default class UploadZone extends Vue {
             this.$refs.dropzoneElement as HTMLElement,
             this.dropzoneSettings
         );
+
+        this.dropzone.on('addedfile', this.onAddedFile);
+    }
+
+    @Emit()
+    public onAddedFile(file: Dropzone.DropzoneFile){
+        // var formData = Cloudinary.createShowImageFormData(file);
+        return file;
     }
 
     beforeDestroy() {

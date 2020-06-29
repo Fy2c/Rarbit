@@ -1,5 +1,5 @@
 import { Database } from '@/utils/database';
-
+import Settings from '@/settings';
 class ShowApi{
 
   getShowList(categoryId: any = null, sorting: any = null, pagination: any = {}){
@@ -26,7 +26,7 @@ class ShowApi{
     }
  
   async getShowListV2(categoryId: any = null, sorting: any = null, pagination: any = {}) {
-    const limit = pagination.limit || 20;
+    const limit = pagination.limit || Settings.Rarbit.showPerPage;
     const page = (pagination.page || 0) * limit;
     const showCollection = Database.collection('shows');
 
