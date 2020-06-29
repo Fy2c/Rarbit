@@ -9,8 +9,8 @@
           <ShowCard
             v-for="item in shows"
             v-bind:key="item.Id"
-            :show="item"></ShowCard>
-
+            :show="item"
+            :editable="true" />
         </v-row>
       </v-container>
     </div>

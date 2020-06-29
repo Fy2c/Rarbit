@@ -5,9 +5,7 @@
         <!-- <v-icon small left style="color: #00d7ee;">$arrowAltCircleLeft</v-icon> -->
         Create New Show
       </v-btn>
-
-      <v-btn class="ml-3" style="color: #fff;">Delete Show</v-btn>
-
+      
       <v-spacer />
 
       <v-btn style="color: #fff;">
