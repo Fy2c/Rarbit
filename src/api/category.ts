@@ -11,7 +11,8 @@ class CategoryApi {
             { id: 4, name: "Music", slug: "music" },
             { id: 5, name: "Drama", slug: "drama" },
             { id: 6, name: "Cooking", slug: "cooking" },
-            { id: 7, name: "History", slug: "history" }
+            { id: 7, name: "History", slug: "history" },
+            { id: 8, name: "Other", slug: "other" }
         ])
       );
   }

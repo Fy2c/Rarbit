@@ -69,6 +69,8 @@ import { UploadModule } from '@/store/modules/upload';
 import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue';
 import UploadZone from '@/components/UploadZone.vue';
 import CategoryApi from '@/api/category';
+import ShowApi from '@/api/shows';
+import uuid from 'short-uuid';
 
 @Component({
     components: {
@@ -91,9 +93,12 @@ export default class EpisodeDetail extends Vue {
     public categoryList: any = [];
 
     async created() {
-        UploadModule.clearFormData();
+        // UploadModule.clearFormData();
+
+        UploadModule.addMockToFormData();
         let category = await CategoryApi.getCategory();
         this.categoryList = [...category.filter(x => x.slug != 'everything')];
+
     }
 
     public onAddedFile(file: any) {
@@ -102,7 +107,8 @@ export default class EpisodeDetail extends Vue {
 
     public onSubmitForm(){
         const formData = {...this.formData};
-        console.log(formData);
+        formData.slug = "mpA7XY6L7VkHB2dYeXxM2M"; //uuid.generate();
+        ShowApi.createShow(formData);
     }
 }
 </script>

@@ -1,6 +1,22 @@
 import { Database } from '@/utils/database';
 import Settings from '@/settings';
+import firebase from 'firebase/app';
+
+const COLLECTION = 'shows';
+const USER_LIST_COLLECTION = 'users';
+
 class ShowApi{
+
+  createShow(payload: any) {
+    const currentUser = Database.app.auth().currentUser;
+
+    if(!currentUser) return;
+
+    payload.uid = currentUser.uid;
+
+    return Database.collection(COLLECTION)
+                   .add(payload);
+  }
 
   getShowList(categoryId: any = null, sorting: any = null, pagination: any = {}){
     return new Promise(
@@ -29,32 +45,7 @@ class ShowApi{
   }
  
   async getShowListV2(categoryId: any = null, sorting: any = null, pagination: any = {}) {
-    const limit = pagination.limit || Settings.Rarbit.showPerPage;
-    const page = (pagination.page || 0) * limit;
-    const showCollection = Database.collection('shows');
-
-    const query = categoryId == 0 //show Evertything
-                ? showCollection
-                : showCollection.where('categoryId', '==', categoryId);
-        
-    let showSnaps = await query.limit(limit).orderBy('createdAt', 'desc')
-                               .startAfter(page).get();
-
-    const userIds = [...new Set(showSnaps.docs.map((x: any) => x.userId))];
-    const userSnaps = userIds.length == 0
-                    ? { docs: [] }
-                    : await Database.collection('users').where('uid', 'in', userIds).get();
-
-    return showSnaps.docs.map((show: any) =>
-      {
-        let user: any = userSnaps.docs.find((user:any) => user.uid == show.uid) || {};
-
-        return {
-          title: show.title,
-          poster: show.poster,
-          author: user.displayName
-        };
-      });
+   
   }
 } 
 

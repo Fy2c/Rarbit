@@ -1,6 +1,6 @@
 <template>
     <div>
-        <NavSubMenuBar class="d-lg-block d-xl-block d-md-block d-none"></NavSubMenuBar>
+        <EpisodeMenuBar class="d-lg-block d-xl-block d-md-block d-none"></EpisodeMenuBar>
         <div class="d-lg-block d-xl-block d-md-block d-none" style="margin-bottom: 100px;"></div>
         <div style="margin-top:60px;">
             <HeroHome></HeroHome>
@@ -25,28 +25,28 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue'
+import EpisodeMenuBar from '@/components/Menu/EpisodeMenuBar/EpisodeMenuBar.vue'
 import HeroHome from '@/components/HeroHome/HeroHome.vue'
 import EpisodeCard from '@/components/EpisodeCard/EpisodeCard.vue'
-import EpisodeModel from '@/models/EpisodeModel'
 
 @Component({
   components: {
-    NavSubMenuBar,
+    EpisodeMenuBar,
     HeroHome,
     EpisodeCard
   }
 })
 export default class ShowDetail extends Vue {
         show: any;
-        episodes: EpisodeModel[];
+        episodes: any;
 
         get episodesCount (): number {
           return this.episodes.length
         }
 
         constructor () {
-          super()
+          super();
+
           this.show = {
               author: 'Anais Fleming', 
               title: 'My Life is a Journey - Love and Piece',
@@ -55,16 +55,25 @@ export default class ShowDetail extends Vue {
             }
 
           this.episodes = [
-            new EpisodeModel(this.show.Author, 'Space - A final frontier', 1, this.show.Slug,
-              '/assets/episodes/episode-01.png', 20, this.show.Id),
-            new EpisodeModel(this.show.Author, 'Where All Started', 2, this.show.Slug,
-              '/assets/episodes/episode-02.png', 0, this.show.Id),
-            new EpisodeModel(this.show.Author, 'Alpha Centauri', 3, this.show.Slug,
-              '/assets/episodes/episode-03.png', 0, this.show.Id),
-            new EpisodeModel(this.show.Author, 'Saturn - A ring of stone', 4, this.show.Slug,
-              '/assets/episodes/episode-04.png', 0, this.show.Id)
+            { author: this.show.author, title: 'Space - A final frontier', episodeNumber: 1,slug: this.show.slug,
+              thumbnail: '/assets/episodes/episode-01.png', showId: this.show.Id },
+            { author: this.show.author, title: 'Where All Started', episodeNumber: 2,slug: this.show.slug,
+              thumbnail: '/assets/episodes/episode-02.png', showId: this.show.Id },
+            { author: this.show.author, title: 'Alpha Centauri', episodeNumber: 3,slug: this.show.slug,
+              thumbnail: '/assets/episodes/episode-03.png', showId: this.show.Id },
+            { author: this.show.author, title: 'Saturn - A ring of stone', episodeNumber: 4,slug: this.show.slug,
+              thumbnail: '/assets/episodes/episode-04.png', showId: this.show.Id },
           ]
         }
+
+    // readonly Id: Guid
+    // readonly EpisodeNumber: number
+    // readonly Author: string
+    // readonly Thumbnail: string
+    // readonly Title: string
+    // readonly Slug: string
+    // readonly Progress: number
+    // readonly ShowGuid: Guid
 }
 </script>
 

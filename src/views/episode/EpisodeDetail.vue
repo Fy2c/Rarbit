@@ -18,7 +18,6 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 
 import VideoPlayer from '@/components/video_player.vue'
 import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue'
-import EpisodeModel from '@/models/EpisodeModel'
 
     @Component({
       components: {
@@ -28,7 +27,7 @@ import EpisodeModel from '@/models/EpisodeModel'
     })
 export default class EpisodeDetail extends Vue {
         show: any;
-        episode: EpisodeModel;
+        episode: any;
         videoOptions = {
           techOrder: ['html5', 'flash'],
           sourceOrder: true,
@@ -55,9 +54,8 @@ export default class EpisodeDetail extends Vue {
               poster:'/assets/movies/movie-02.png'
             }
 
-          this.episode =
-                new EpisodeModel(this.show.Author, 'Space - A final frontier', 1, this.show.Slug,
-                  '/assets/episodes/episode-01.png', 20, this.show.Id)
+          this.episode = { author: this.show.author, title: 'Space - A final frontier', episodeNumber: 1,slug: this.show.slug,
+              thumbnail: '/assets/episodes/episode-01.png', showId: this.show.Id }
           window.scrollTo(0, 0)
         }
 }

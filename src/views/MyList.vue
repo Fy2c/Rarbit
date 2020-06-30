@@ -1,13 +1,13 @@
 <template>
   <div>
-    <HomeMenuBar 
+    <!-- <HomeMenuBar 
       class="d-lg-block d-xl-block d-md-block d-none"
       @filter-updated="getShowList"
-    />
-    <div class="d-lg-block d-xl-block d-md-block d-none" style="margin-bottom: 100px;"></div>
-    <div style="margin-top: 60px;">
+    /> -->
+    <div class="d-lg-block d-xl-block d-md-block d-none" style="margin-bottom: 64px;"></div>
+    <div style="margin-top: 30px;">
       <v-container fluid=true class="px-11">
-        <v-row class="mt-6 ml-n5">
+        <v-row class="ml-n5">
           <ShowCard
             v-for="item in shows"
             v-bind:key="item.Id"
@@ -20,12 +20,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { HomeModule } from '@/store/modules/home';
 
-import ShowApi from '@/api/shows';
-import HomeMenuBar from '@/components/Menu/HomeMenuBar/HomeMenuBar.vue';
-import ShowCard from '@/components/ShowCard/ShowCard.vue';
+import HomeMenuBar from '@/components/Menu/HomeMenuBar/HomeMenuBar.vue'
+import ShowCard from '@/components/ShowCard/ShowCard.vue'
 import debounce from 'lodash/debounce';
 
 @Component({
@@ -34,7 +33,7 @@ import debounce from 'lodash/debounce';
     ShowCard
   }
 })
-export default class Home extends Vue {
+export default class MyList extends Vue {
   get page(){
     return HomeModule.page;
   }
@@ -43,8 +42,9 @@ export default class Home extends Vue {
     return HomeModule.showsList;
   };
 
-  private getShowList = debounce(async () => 
-    await HomeModule.getShowList(), 500);
+  async created(){
+    await HomeModule.getShowList();
+  }
 
 }
 

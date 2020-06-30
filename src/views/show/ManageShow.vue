@@ -2,7 +2,7 @@
   <div>
     <ManageShowsMenuBar></ManageShowsMenuBar>
     <div class="d-lg-block d-xl-block d-md-block d-none" style="margin-bottom: 100px;"></div>
-    <div style="height:1000px;margin-top: 60px;">
+    <div style="margin-top: 60px;">
 
       <v-container fluid=true class="px-10">
         <v-row class="ml-n5 mt-7">

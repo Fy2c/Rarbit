@@ -40,6 +40,16 @@ class Upload extends VuexModule {
     clearFormData() {
         this.updateFormData({ ...this.defaultValue });
     }
+
+    @Action
+    addMockToFormData(){
+        this.updateFormData({
+            title: 'My Life is a Journey - Love and Piece',
+            description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam aperiam.',
+            category: 'documentary',
+            poster:'/assets/movies/movie-02.png'
+          });
+    }
 }
 
 export const UploadModule = getModule(Upload);

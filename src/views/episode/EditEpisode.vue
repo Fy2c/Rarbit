@@ -5,8 +5,8 @@
         <div style="margin-top: 60px;">
             <div class="container pt-10">
                 <div class="row" style="justify-content: center!important;">
-                    <div class="col-lg-4 col-md-5" style="padding-left:60px;padding-right:60px;">
-                        <UploadZone 
+                    <div class="col-lg-4 col-md-5" style="padding-left:30px;padding-right:30px;">
+                        <EpisodeUploadZone 
                             :options="dropzoneOptions"
                             @on-added-file="onAddedFile"
                         />
@@ -16,7 +16,7 @@
                             <v-text-field 
                                 class="mt-5"
                                 v-model="data.title"
-                                label="Show Title"
+                                label="Episode Title"
                                 placeholder="My awesome episode name"
                                 counter=50
                             />
@@ -47,14 +47,14 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import NavSubMenuBar from '@/components/Menu/NavSubMenuBar/NavSubMenuBar.vue';
-import UploadZone from '@/components/UploadZone.vue';
+import EpisodeUploadZone from '@/components/EpisodeUploadZone.vue';
 import CategoryApi from '@/api/category';
 
 
 @Component({
     components: {
         NavSubMenuBar,
-        UploadZone
+        EpisodeUploadZone
     }
 })
 

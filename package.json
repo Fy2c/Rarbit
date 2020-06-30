@@ -18,6 +18,7 @@
     "lodash": "^4.17.15",
     "rxfire": "^3.13.5",
     "rxjs": "^6.5.5",
+    "short-uuid": "^3.1.1",
     "video.js": "^7.7.6",
     "videojs-flash": "^2.2.1",
     "vue": "^2.6.11",

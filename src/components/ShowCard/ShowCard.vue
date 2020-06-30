@@ -43,8 +43,9 @@ export default class ShowCard extends Vue {
     }
 
     select (event: any) {
-      event.target.blur()
-      this.$router.push('/show/' + this.show.Slug)
+      event.target.blur();
+      this.$router.push('/show/' + this.show.slug);
+      
     }
 
     onClickEdit(){
