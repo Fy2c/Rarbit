@@ -13,7 +13,7 @@
     "@types/lodash": "^4.14.157",
     "@videojs/themes": "^1.0.0",
     "core-js": "^3.6.4",
-    "firebase": "^7.15.4",
+    "firebase": "^10.9.0",
     "guid-typescript": "^1.0.9",
     "lodash": "^4.17.15",
     "rxfire": "^3.13.5",
